@@ -1,5 +1,5 @@
 const RequestTurtle = require('request-turtle');
-const { db, Page, Domain, QueueItem } = require('./models');
+const { db, Page, Domain, QueueItem } = require('./db');
 const cheerio = require('cheerio');
 const turtle = new RequestTurtle({ limit: 300 });
 
@@ -43,6 +43,7 @@ function findLinks($) {
 
 
 function crawl() {
+  console.log("hey");
   return QueueItem.dequeue()
     .then(queueItem => {
       return Promise.all([
